@@ -12,8 +12,8 @@ Welcome to the HBT2 wiki!
 HBT2 is a hybrid subhalo finder and merger tree builder for cosmological simulations. 
 
 It comes with two editions:
-* a [MPI](https://github.com/Kambrian/HBT2/tree/MPI) branch that can be run on distributed clusters, 
-* a [Hydro](https://github.com/Kambrian/HBT2/tree/hydro) branch that can be run on shared memory machines (best for analysing zoomed-in simulations that are difficult to balance on distributed clusters). 
+* a [MPI](https://github.com/Kambrian/HBT2/tree/MPI) branch that can be run on distributed clusters or shared memory machines. It is MPI/OpenMP parallelized.
+* a [Hydro](https://github.com/Kambrian/HBT2/tree/hydro) branch that can be run on shared memory machines. It is only OpenMP parallelized. This version is more memory efficient than the MPI branch on shared memory machines, and is more suitable for analysing zoomed-in simulations that are difficult to balance on distributed clusters.
 
 Currently only the Hydro branch supports hydro simulations with gas/stars, while the MPI branch is for dark matter only simulations.
 
