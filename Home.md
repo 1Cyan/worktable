@@ -21,6 +21,8 @@ Currently only the Hydro branch supports hydro simulations with gas/stars, while
 
 - a `c++` compiler with `c++11` support (e.g., `gcc 4.6.3` above)
 - [HDF5](https://www.hdfgroup.org/) C library (1.8.0 and above)
+For the MPI edition, you also need
+- a MPI library (e.g., OpenMPI, MPICH, PlatformMPI)
 
 ### Optional dependence
 - GNU Scientific Library [(GSL)](http://www.gnu.org/software/gsl/). 
@@ -52,8 +54,14 @@ To produce single-precision `HBT` (internal datatypes are 4byte int and 4byte fl
   will define `HBT_INT8` when you compile `HBT`.
  
 ## Run
+
+For the Hydro edition:
  
     ./HBT configs/Example.conf [snapshotstart] [snapshotend]
+
+For the MPI edition:
+
+    mpirun -np 2 ./HBT configs/Example.conf [snapshotstart] [snapshotend]
 
 Check `configs/Example.conf` for a sample parameter file.
 
@@ -85,6 +93,19 @@ The other properties should be self-explainatory.
 Notes on Peebles and Bullock spin parameters: these parameters are vaguely defined due to the ambiguity/lack of standard in the mass, radius, and energy of a subhalo. Use them with caution. If possible, use the `SpecificAngularMomentum` instead of the spin parameters.
 
 For the Hydrodynamical version of HBT, there might be objects with `Nbound=0` and an empty particle list. this means the track is lost due to all its particles consumed by a BH.
+
+## Notes for users migrating from `HBT` to `HBT2`
+HBT and HBT2 have different algorithmic details. They are not expected to give identical results. 
+
+Most importantly, HBT2 adopts an inclusive defition of subhalo mass, that is, the mass (and particle list) of a subhalo includes the mass of its "sub-in-subs", so that one particle can be included in multiple subhaloes. In contrast, `HBT-1` (and `SUBFIND`) adopts an exclusive mass definition, so that each particle can only belong to at most one unique subhalo.
+
+HBT no longer uses `ProSubID`. Instead, each subhalo is labelled by a unique `TrackId`, which is fixed throughout its evolution history. The progenitor/descendent of a subhalo at another snapshot is simply the subhalo labelled by the same `TrackId` at that time. 
+
+sub_hierarchy is not available in HBT2 (but you would rarely need it.)
+
+The host halo of each subhalo is given by `HostHaloId`, which is the index of the host halo in the order stored in the corresponding (FoF) halo catalogue.  With this you can sort or search to find all the members of each host.
+
+HBT2 no longer have splintters. HBT2 does not store fake haloes either, i.e., for haloes that are not bound, you won't be able to find any subhalo hosted by it in HBT2.
 
 ## Reference
 For now, please cite the original [HBT paper](http://adsabs.harvard.edu/abs/2012MNRAS.427.2437H) if you use HBT in your work. We will soon have another paper coming out describing the new implementation here.
