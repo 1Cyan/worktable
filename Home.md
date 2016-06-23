@@ -6,7 +6,7 @@ Welcome to the HBT2 wiki!
 * [Compile](#compile)
 * [Run](#run)
 * [Output](#output)
-* [Difference from `HBT-1` and `SUBFIND`](#notes-for-users-migrating-from-HBT-to-HBT2)
+* [Difference from `HBT-1` and `SUBFIND`](#notes-for-users-migrating-from-hbt-to-hbt2)
 * [Reference](#reference)
 
 ## Introduction
