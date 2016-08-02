@@ -51,7 +51,7 @@ To produce single-precision `HBT` (internal datatypes are 4byte int and 4byte fl
 
   Simply add these macro definitions to the CXXFLAGS of your target in the Makefile. For example, adding this line to the Makefile
   
-    HBT: CXXFLAGS+=-DHBT_INT8 
+          HBT: CXXFLAGS+=-DHBT_INT8 
 
   will define `HBT_INT8` when you compile `HBT`.
  
