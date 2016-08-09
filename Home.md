@@ -94,7 +94,9 @@ The other properties should be self-explainatory.
 
 Notes on Peebles and Bullock spin parameters: these parameters are vaguely defined due to the ambiguity/lack of standard in the mass, radius, and energy of a subhalo. Use them with caution. If possible, use the `SpecificAngularMomentum` instead of the spin parameters.
 
-For the Hydrodynamical version of HBT, there might be objects with `Nbound=0` and an empty particle list. this means the track is lost due to all its particles consumed by a BH.
+There might be objects with `Nbound=0` and an empty particle list. These are mostly eliminated tracks arising from small halos that had their most-bound particles fluctuated away from the halo itself and then back again, creating duplicate branches which are eliminated later. In hydro simulations, `Nbound=0` tracks could also exist as a result of all its particles consumed by a BH. 
+
+For scientific analysis of the tracks, we recommend a basic selection in `LastMaxMass` (the peak mass of each track), to eliminate under-resolved tracks.  
 
 ## Notes for users migrating from `HBT` to `HBT2`
 HBT and HBT2 have different algorithmic details. They are not expected to give identical results. 
