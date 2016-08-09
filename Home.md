@@ -48,7 +48,7 @@ To produce single-precision `HBT` (internal datatypes are 4byte int and 4byte fl
 - `HBT_REAL8`: use 8 byte float (i.e., C double) as default float type (for particle position/velocity)
 - `UNBIND_WITH_THERMAL_ENERGY`: include thermal energy in unbinding. If this is not defined, the code does not read in or use the thermal energy at all.
 - `DM_ONLY` : compile the code for dark matter only simulations. You do not have to turn this on for DM-only simulations, but doing this saves some memory.
-- `INCLUSIVE_MASS`: produce subhalos with inclusive mass definition. This will make the mass of a subhalo to include the contribution from its sub-subhalos (though not exactly).
+- `INCLUSIVE_MASS`: produce subhalos with inclusive mass definition. This will make the mass of a subhalo to include the contribution from its sub-subhalos (though not exactly). By default this is not enabled, so the subhaloes are mutually exclusive (though not precisely, with the possibility of a small number of particles being shared by two or more subhaloes).
 
   Simply add these macro definitions to the CXXFLAGS of your target in the Makefile. For example, adding this line to the Makefile
   
@@ -87,7 +87,7 @@ Each subhalo is labelled by a unique `TrackId`, which is fixed throughout its ev
 
 `Rank` gives the order of subhaloes inside the group if sorted according to `Nbound`, with `Rank=0` indicating the most-massive subhalo inside each group (i.e., the main/central subhalo).
 
-`Nbound` gives the number of bound particles in the subhalo. Once a subhalo is stripped to below `MinNumPartOfSub` specified in the parameter file, HBT continues to track its most bound particle. This single-particle descendents then have `Nbound=1`, and represent the "orphan" galaxy population in the framework of semi-analytical models. These orphans are also listed as subhaloes. `Nbound=1` means the subhalo has been disrupted, so that only the most-bound particle is still tracked. `Mbound` is the bound mass (in physical units). Correspondingly, `NboundType` and `MboundType` are the bound particle number and bound mass for each type of particles (e.g., gas, DM, star, boundary...). 
+`Nbound` gives the number of bound particles in the subhalo. Once a subhalo is stripped to below `MinNumPartOfSub` specified in the parameter file, HBT continues to track its most bound particle. This single-particle descendents then have `Nbound=1`, and represent the "orphan" galaxy population in the framework of semi-analytical models. These orphans are also listed as subhaloes. `Nbound=1` means the subhalo has been disrupted, so that only the most-bound particle is still tracked. `Mbound` is the bound mass (in physical units). Correspondingly, `NboundType` and `MboundType` are the bound particle number and bound mass for each type of particles (e.g., gas, DM, star, boundary...). By default, the mass of a subhalo does not include the contribution from its sub-subhalos (similar to the mass definition in `SUBFIND`).
 
 `MVir`, `RVirComoving`, etc are the virial mass and radius for each bound subhalo, obtaining by searching for a spherical overdensity (SO) radius counting only the bound density. This could differ slightly from the SO quantities for the host halo defined using all the mass (no matter bound or not) enclosed in a sphere. At low redshift, the 200Mean mass can be underestimated by 10%. However, the 200Crit and the tophat virial masses are generally unbiased since almost all the masses inside these two radii are found in the bound structure of the FoF halo.
 
@@ -103,8 +103,6 @@ For scientific analysis of the tracks, we recommend a basic selection in `LastMa
 
 ## Notes for users migrating from `HBT` to `HBT2`
 HBT and HBT2 have different algorithmic details. They are not expected to give identical results. 
-
-Most importantly, HBT2 adopts an inclusive defition of subhalo mass, that is, the mass (and particle list) of a subhalo includes the mass of its "sub-in-subs", so that one particle can be included in multiple subhaloes. In contrast, `HBT-1` (and `SUBFIND`) adopts an exclusive mass definition, so that each particle can only belong to at most one unique subhalo.
 
 HBT no longer uses `ProSubID`. Instead, each subhalo is labelled by a unique `TrackId`, which is fixed throughout its evolution history. The progenitor/descendent of a subhalo at another snapshot is simply the subhalo labelled by the same `TrackId` at that time. 
 
