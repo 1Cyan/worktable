@@ -23,6 +23,7 @@ Both branches support hydro simulations with gas/stars.
 
 - a `c++` compiler with `c++11` support (e.g., `gcc 4.8.1` above)
 - [HDF5](https://www.hdfgroup.org/) C library (1.8.0 and above)
+
 For the MPI edition, you also need
 - a MPI library (e.g., OpenMPI, MPICH, PlatformMPI)
 
