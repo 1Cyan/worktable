@@ -1,0 +1,1 @@
+The ragged branches may introduce unbound hosts to the halo catalogue, and contaminate the SnapshotIndexOfDeath due to the revival of the ragged branches.
