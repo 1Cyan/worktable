@@ -82,7 +82,7 @@ The outputs are in HDF5 format, which can be viewed with [HDFView](https://www.h
 - SubSnap_*.hdf5: the subhalo catalogues, where * is replaced by the snapshot index (normally from `0` to `NumberOfSnapshots-1`). The snapshot index may not be the same as the `SnapshotId` which is the numbering of the simulation snapshot, depending on whether the `SnapshotId`s are consecutive and whether a `SnapshotList` parameter is specified in the config file. Note that if a `MinSnapshotIndex` is specified in the config file, the outputs will start from `MinSnapshotIndex`. This is useful when there are no objects in the first few snapshots of the simulation so that they can be skipped.
 - SrcSnap_*.hdf5: source subhalo catalogues, only used for restarting HBT from an intermediate snapshot. Can be safely removed once the run has finished.
 
-Besides, the VER*.param records the version number of HBT used, as well as the parameter values used.
+Besides, the `Parameters.log` file records the version number of HBT used, as well as the parameter values used.
 
 Each subhalo is labelled by a unique `TrackId`, which is fixed throughout its evolution history. So doing merger tree with HBT is straightforward: the progenitor/descendent of a subhalo at another snapshot is simply the subhalo labelled by the same `TrackId` at that time. The host halo of each subhalo is given by `HostId`, which is the index of the host halo in the order stored in the corresponding (FoF) halo catalogue. To facilitate fast retrieval of all the subhaloes in each host halo, the `/Membership/GroupedTrackIds` dataset in the file stores the list of subhaloes in each group (Note this is only available for the OpenMP version of HBT2).  
 
