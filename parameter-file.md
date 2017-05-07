@@ -14,8 +14,8 @@ You can find a few parameter files under config/. Below is the content of Exampl
 	[Optional]
 	#the default values for optional parameters are listed below, modify and uncomment each item to enable
 
-        [Physics]
-        #MergeTrappedSubhalos 1 #whether to merge subhalos that overlap in phasespace. default is yes.
+	[Physics]
+	#MergeTrappedSubhalos 1 #whether to merge subhalos that overlap in phasespace. default is yes.
 
 	[Reader]
 	#SnapshotFormat gadget
