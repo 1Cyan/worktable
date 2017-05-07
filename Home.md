@@ -90,7 +90,15 @@ Each subhalo is labelled by a unique `TrackId`, which is fixed throughout its ev
 
 `Nbound` gives the number of bound particles in the subhalo. Once a subhalo is stripped to below `MinNumPartOfSub` specified in the parameter file, HBT continues to track its most bound particle. This single-particle descendents then have `Nbound=1`, and represent the "orphan" galaxy population in the framework of semi-analytical models. These orphans are also listed as subhaloes. `Nbound=1` means the subhalo has been disrupted, so that only the most-bound particle is still tracked. `Mbound` is the bound mass (in physical units). Correspondingly, `NboundType` and `MboundType` are the bound particle number and bound mass for each type of particles (e.g., gas, DM, star, boundary...). By default, the mass of a subhalo does not include the contribution from its sub-subhalos (similar to the mass definition in `SUBFIND`).
 
-`MVir`, `RVirComoving`, etc are the virial mass and radius for each bound subhalo, obtaining by searching for a spherical overdensity (SO) radius counting only the bound density. This could differ slightly from the SO quantities for the host halo defined using all the mass (no matter bound or not) enclosed in a sphere. At low redshift, the 200Mean mass can be underestimated by 10%. However, the 200Crit and the tophat virial masses are generally unbiased since almost all the masses inside these two radii are found in the bound structure of the FoF halo.
+`MVir`, `RVirComoving`, etc are the virial mass and radius for each bound subhalo, obtaining by searching for a spherical overdensity (SO) radius counting only the bound density. This could differ slightly from the SO quantities for the host halo defined using all the mass (no matter bound or not) enclosed in a sphere. At low redshift, the 200Mean mass can be underestimated by 10%. However, the 200Crit and the tophat virial masses are generally unbiased since almost all the masses inside these two radii are found in the bound structure of the FoF halo. 
+
+To obtain proper spehrical overdensity quantities for the host halo, please compile and run `halo_virial.cpp` after HBT finishes:
+
+    cd toolbox
+    make halo_virial
+    ./halo_virial [config_file] [snapshot_number]
+
+Note that this program is only available in the [Hydro](https://github.com/Kambrian/HBTplus/tree/Hydro) branch of the code, which is to be run on a shared memory machine. The `Hydro` branch is aware of the output format of the `MPI-Hydro` branch, so that you can run the `MPI-Hydro` version of `HBT`, and the `Hydro` version of `halo_virial`.
 
 The other properties should be self-explainatory. 
 
