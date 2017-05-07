@@ -88,6 +88,8 @@ Each subhalo is labelled by a unique `TrackId`, which is fixed throughout its ev
 
 `Rank` gives the order of subhaloes inside the group if sorted according to `Nbound`, with `Rank=0` indicating the most-massive subhalo inside each group (i.e., the main/central subhalo).
 
+`Depth` gives the level of the subhalo in the merging hierarchy. A central subhalo has `Depth=0`; those directly merged to the host halo of the central have `Depth=1` (i.e., sub-subhalos); those directly merged to depth=1 subhalos have `Depth=2` (i.e., sub-sub-subhalos).
+
 `Nbound` gives the number of bound particles in the subhalo. Once a subhalo is stripped to below `MinNumPartOfSub` specified in the parameter file, HBT continues to track its most bound particle. This single-particle descendents then have `Nbound=1`, and represent the "orphan" galaxy population in the framework of semi-analytical models. These orphans are also listed as subhaloes. `Nbound=1` means the subhalo has been disrupted, so that only the most-bound particle is still tracked. `Mbound` is the bound mass (in physical units). Correspondingly, `NboundType` and `MboundType` are the bound particle number and bound mass for each type of particles (e.g., gas, DM, star, boundary...). By default, the mass of a subhalo does not include the contribution from its sub-subhalos (similar to the mass definition in `SUBFIND`).
 
 `MVir`, `RVirComoving`, etc are the virial mass and radius for each bound subhalo, obtaining by searching for a spherical overdensity (SO) radius counting only the bound density. This could differ slightly from the SO quantities for the host halo defined using all the mass (no matter bound or not) enclosed in a sphere. At low redshift, the 200Mean mass can be underestimated by 10%. However, the 200Crit and the tophat virial masses are generally unbiased since almost all the masses inside these two radii are found in the bound structure of the FoF halo. 
@@ -99,6 +101,9 @@ To obtain proper spehrical overdensity quantities for the host halo, please comp
     ./halo_virial [config_file] [snapshot_number]
 
 Note that this program is only available in the [Hydro](https://github.com/Kambrian/HBTplus/tree/Hydro) branch of the code, which is to be run on a shared memory machine. The `Hydro` branch is aware of the output format of the `MPI-Hydro` branch, so that you can run the `MPI-Hydro` version of `HBT`, and the `Hydro` version of `halo_virial`.
+
+`SinkTrackId`: the `TrackId` that this subhalo merged to; `-1` if this subhalo has not merged to any other track. A subhalo merger is defined when two subhalos are nearly identical in location and velocities given the current resolution of the simulation. When this is detected, the `SinkTrackId` of the satellite subhalo is set to the `TrackId` of its host-subhalo (the other one in the pair; whether a subhalo is a satellite or a host is determined according to the current `Rank` and `Depth`). The satellite is then merged to its host-subhalo (i.e., transferring all its particles to the host-subhalo) unless `MergeTrappedSubhalos` is set to `0` in the config file.   
+
 
 The other properties should be self-explainatory. 
 
