@@ -68,6 +68,8 @@ HBT needs simulation snapshots and halo catalogues (e.g., fof halos) as input. I
 
 It will process one snapshot at a time. 
 
+To use these FoF halos as input to `HBT`, set `GroupFileFormat hbt_group_hdf5` in the config file.
+
 ### Subhalos and merger trees
 The main function of `HBT` is to produce subhalos and their evolution histories. 
 
