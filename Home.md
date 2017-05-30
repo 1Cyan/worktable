@@ -61,7 +61,7 @@ To produce single-precision `HBT` (internal datatypes are 4byte int and 4byte fl
 
 ## Run
 ### FoF halos
-HBT needs simulation snapshots and halo catalogues (e.g., fof halos) as input. If you do not already have halo catalogues for your simulation, you can use the `FoF` program in HBT as detailed [here]().
+HBT needs simulation snapshots and halo catalogues (e.g., fof halos) as input. If you do not already have halo catalogues for your simulation, you can use the `FoF` program in HBT as detailed [here](https://github.com/Kambrian/HBTplus/wiki/FoF-halo-finder). You have to run it before running the main program of HBT.
 
 ### Subhalos and merger trees
 The main function of `HBT` is to produce subhalos and their evolution histories. 
