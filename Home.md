@@ -58,8 +58,18 @@ To produce single-precision `HBT` (internal datatypes are 4byte int and 4byte fl
           HBT: CXXFLAGS+=-DHBT_INT8 
 
   will define `HBT_INT8` when you compile `HBT`.
- 
+
 ## Run
+### FoF halos
+HBT needs simulation snapshots and halo catalogues (e.g., fof halos) as input. If you do not already have halo catalogues for your simulation, you can use the `FoF` program (currently only a serial version is provided in the `Hydro` branch). To use it,
+
+    make FoF
+    ./FoF configs/Example.conf snapshot_id
+
+It will process one snapshot at a time. 
+
+### Subhalos and merger trees
+The main function of `HBT` is to produce subhalos and their evolution histories. 
 
 For the Hydro edition:
  
@@ -71,7 +81,7 @@ For the MPI edition:
 
 Check `configs/Example.conf` for a sample parameter file.
 
-If `snapshotend` is omitted, only process `snapshotstart`. If `snapshotstart` is also omitted, will run from `MinSnapshotIndex` (default=0) to `MaxSnapshotIndex` (specified in config file).
+If `snapshotend` is omitted, only process `snapshotstart`. If `snapshotstart` is also omitted, will run from `MinSnapshotIndex` (default=0) to `MaxSnapshotIndex` (specified in config file). If `snapshotstart>MinSnapshotIndex`, `HBT` assumes the previous run stopped at `snapshotstart-1`, and will load the `SrcSnap_($snapshotstart-1).hdf5` and continue the run from `snapshotstart`. 
 
 To submit to a batch queue, check `HBTjob.bsub`
 
