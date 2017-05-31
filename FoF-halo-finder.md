@@ -10,8 +10,8 @@ To use it,
 
 - Examples:
     * process all the snapshots (from `MinSnapshotIndex` to `MaxSnapshotIndex`)
-
-        ./FoF configs/Example.conf
+    
+    ./FoF configs/Example.conf
 
     * process snapshot 10:
 
