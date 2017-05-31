@@ -11,15 +11,15 @@ To use it,
 - Examples:
     * process all the snapshots (from `MinSnapshotIndex` to `MaxSnapshotIndex`)
     
-    ./FoF configs/Example.conf
+         ./FoF configs/Example.conf
 
     * process snapshot 10:
 
-        ./FoF configs/Example.conf 10
+         ./FoF configs/Example.conf 10
 
     * run from snapshot 5 to 20 (both end included):
 
-        ./FoF configs/Example.conf 5 20
+         ./FoF configs/Example.conf 5 20
 
 # Use the output
 To use these FoF halos as input to `HBT`, set
