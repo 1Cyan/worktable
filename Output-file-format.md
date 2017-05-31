@@ -1,4 +1,6 @@
 Outputs' format is hdf5.
+![example SubSnap file](https://drive.google.com/file/d/0B049M2pH2eETWV9SRnRYMWt6bTg/view?usp=sharing)
+
 Here's the headers of an example output file.
 
 Special types: 
