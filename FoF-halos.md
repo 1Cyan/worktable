@@ -34,3 +34,13 @@ You can also change the following parameters of FoF:
     FoFLinkParam 0.2  #fof linking length in unit of average particle separation
     FoFSizeMin 20  #minimum number of particles in halo
     FoFDarkMatterMassFraction 1.0 #OmegaDM0/OmegaMatter0, the mass fraction of dark matter in the simulation, used to determine average particle separation from particle mass. If there is no baryons, then set this to 1.
+
+# Computing Halo properties
+
+The virial size and `Rmax`/`Vmax` quantities for FoF halos can be computed using `halo_virial.cpp` in toolbox of the `Hydro` branch. To compute these quantities, 
+
+    cd toolbox
+    make halo_virial
+    ./halo_virial [config_file] [snapshot_number]
+
+Note this has to be run **after finding subhalos with `HBT` **, because we use the center of the central subhalo as the center for the host halo in computing host properties.
