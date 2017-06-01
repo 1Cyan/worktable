@@ -1,5 +1,5 @@
 Outputs' format is hdf5.
-
+![Sample SubSnap file in hdfview](https://github.com/Kambrian/HBTplus/blob/doc/SubSnap.png)
 Here's the headers of an example output file.
 
 Special types: 
