@@ -51,7 +51,6 @@ To produce single-precision `HBT` (internal datatypes are 4byte int and 4byte fl
 - `DM_ONLY` : compile the code for dark matter only simulations, or only process the DM particles while disregarding other types of particles. You do not have to turn this on for DM-only simulations, but doing this saves some memory (without DM_ONLY, HBT records one mass for each particle). 
      * For the openmp edition, enabling this flag assumes DM particles have the same mass. If this is not the case, do not enable this flag. 
      * For the MPI version, it's ok even if the DM particles have individual mass and this flag can always be used if you want to process only the DM particles.
-- `INCLUSIVE_MASS`: produce subhalos with inclusive mass definition. This will make the mass of a subhalo to include the contribution from its sub-subhalos (though not exactly). By default this is not enabled, so the subhaloes are mutually exclusive (though not precisely, with the possibility of a small number of particles being shared by two or more subhaloes).
 
   Simply add these macro definitions to the CXXFLAGS of your target in the Makefile. For example, adding this line to the Makefile
   
