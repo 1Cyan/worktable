@@ -47,14 +47,16 @@ To produce single-precision `HBT` (internal datatypes are 4byte int and 4byte fl
 
 - `HBT_INT8` : use 8 byte integer (i.e., C long int) as default integer type (for particle IDs etc.)
 - `HBT_REAL8`: use 8 byte float (i.e., C double) as default float type (for particle position/velocity)
-
-- `UNBIND_WITH_THERMAL_ENERGY`: include thermal energy in unbinding (only relevant for hydro simulations). If this is not defined, the code does not read in or use the thermal energy at all.
-- `SAVE_BINDING_ENERGY`: output the binding energy of each particle 
-- `HAS_THERMAL_ENERGY`: read in the thermal energy of each particle from the snapshot. Automatically defined if `UNBIND_WITH_THERMAL_ENERGY` is defined. If SaveSubParticleProperties is 1 in the config file, then the thermal energy will also be saved (so that you can use it to redefine the binding energy of each particle). 
-
 - `DM_ONLY` : compile the code for dark matter only simulations, or only process the DM particles while disregarding other types of particles. You do not have to turn this on for DM-only simulations, but doing this saves some memory (without DM_ONLY, HBT records one mass for each particle). 
      * For the openmp edition, enabling this flag assumes DM particles have the same mass. If this is not the case, do not enable this flag. 
      * For the MPI version, it's ok even if the DM particles have individual mass and this flag can always be used if you want to process only the DM particles.
+
+- `SAVE_BINDING_ENERGY`: output the binding energy of each particle 
+
+For unbinding gas particles:
+- `UNBIND_WITH_THERMAL_ENERGY`: include thermal energy in unbinding (only relevant for hydro simulations). If this is not defined, the code does not read in or use the thermal energy at all.
+- `HAS_THERMAL_ENERGY`: read in the thermal energy of each particle from the snapshot. Automatically defined if `UNBIND_WITH_THERMAL_ENERGY` is defined. If SaveSubParticleProperties is 1 in the config file, then the thermal energy will also be saved (so that you can use it to redefine the binding energy of each particle). 
+
 
   Simply add these macro definitions to the CXXFLAGS of your target in the Makefile. For example, adding this line to the Makefile
   
