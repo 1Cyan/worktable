@@ -29,7 +29,7 @@ To use these FoF halos as input to `HBT`, set
 in the config file.
 
 # Customization
-You can also change the following parameters of FoF:
+You can also change the following parameters of FoF in the config file:
 
     FoFLinkParam 0.2  #fof linking length in unit of average particle separation
     FoFSizeMin 20  #minimum number of particles in halo
