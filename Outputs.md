@@ -45,6 +45,17 @@ There might be objects with `Nbound=0` and an empty particle list. These are mos
 
 For scientific analysis of the tracks, we recommend a basic selection in `LastMaxMass` (the peak mass of each track), to eliminate under-resolved tracks.  
 
+## Notes for users migrating from `HBT` to `HBT2`
+HBT and HBT2 have different algorithmic details. They are not expected to give identical results. 
+
+HBT no longer uses `ProSubID`. Instead, each subhalo is labelled by a unique `TrackId`, which is fixed throughout its evolution history. The progenitor/descendent of a subhalo at another snapshot is simply the subhalo labelled by the same `TrackId` at that time. 
+
+`sub_hierarchy` is not available in HBT2. Instead, a list of `NestedSubhalos` is available for each subhalo.
+
+The host halo of each subhalo is given by `HostHaloId`, which is the index of the host halo in the order stored in the corresponding (FoF) halo catalogue.  With this you can sort or search to find all the members of each host.
+
+HBT2 no longer have splintters. HBT2 does not store fake haloes either, i.e., for haloes that are not bound, you won't be able to find any subhalo hosted by it in HBT2.
+
 --------------------
 Here's the headers of an example output file.
 
