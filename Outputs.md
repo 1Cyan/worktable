@@ -1,3 +1,9 @@
+# Table of cotents
+* [Output files](#output-files)
+* [Subhalos and merger tree](#subhalo-properties-and-merger-tree)
+* [Basic data selection](#basic-data-selection)
+* [Difference from `HBT-1`](#notes-for-users-migrating-from-hbt-to-hbt2)
+
 ### Output files
 There are two types of files in the output:
   
