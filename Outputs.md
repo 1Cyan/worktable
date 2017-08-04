@@ -1,4 +1,4 @@
-## Files
+### Output files
 There are two types of files in the output:
   
 - SubSnap_*.hdf5: the subhalo catalogues, where * is replaced by the snapshot index (normally from `0` to `NumberOfSnapshots-1`). The snapshot index may not be the same as the `SnapshotId` which is the numbering of the simulation snapshot, depending on whether the `SnapshotId`s are consecutive and whether a `SnapshotList` parameter is specified in the config file. Note that if a `MinSnapshotIndex` is specified in the config file, the outputs will start from `MinSnapshotIndex`. This is useful when there are no objects in the first few snapshots of the simulation so that they can be skipped.
@@ -11,7 +11,7 @@ The main outputs are in HDF5 format, which can be viewed with [HDFView](https://
 The following is a screenshot of a sample SubSnap file opened in hdfview:
 ![Sample SubSnap file in hdfview](https://github.com/Kambrian/HBTplus/blob/doc/SubSnap.png)
 
-### subhalo properties and merger tree
+### Subhalo properties and merger tree
 Each subhalo is labelled by a unique `TrackId`, which is fixed throughout its evolution history (see illustration in the figure). So doing merger tree with HBT is straightforward: the progenitor/descendent of a subhalo at another snapshot is simply the subhalo labelled by the same `TrackId` at that time. The host halo of each subhalo is given by `HostHaloId`, which is the index of the host halo in the order stored in the corresponding (FoF) halo catalogue (those in the first FoF halo have `HostHaloId=0`). There could be subhalos with `HostHaloId=-1`. These are subhalos that are not enclosed in any FoF halo but still remain bound. To facilitate fast retrieval of all the subhaloes in each host halo, the `/Membership/GroupedTrackIds` dataset in the file stores the list of subhaloes in each group (Note this is only available for the OpenMP version of HBT2).  
 
 ![TrackTable](https://github.com/Kambrian/HBTplus/blob/doc/tracktable.png)
@@ -44,8 +44,8 @@ There might be objects with `Nbound=0` and an empty particle list. These are mos
 ### Basic Data Selection
 
 For scientific analysis of the tracks, we recommend a basic selection in `LastMaxMass` (the peak mass of each track), to eliminate under-resolved tracks.  
-Outputs' format is hdf5.
 
+--------------------
 Here's the headers of an example output file.
 
 Special types: 
