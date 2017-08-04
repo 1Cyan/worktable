@@ -19,6 +19,8 @@ Both editions support hydro simulations with gas/stars.
 ## Prerequisites
 
 - a `c++` compiler with `c++11` support (e.g., `gcc 4.8.1` above)
+  * if you use intel compilers, they still have to be built with a recent `gcc` to be able to support `c++11`. You can check the version of your compiler by `icc -V` or `gcc -v` for example.
+  * if you have to install `gcc` from source, read the official installation guide from the gcc website and you will find that it's not as difficult. You can easily download all the prerequisites of gcc with a script provided in the source and you can compile in parallel (with `make -j`).
 - [HDF5](https://www.hdfgroup.org/) C library (1.8.0 and above)
 
 For the MPI edition, you also need
