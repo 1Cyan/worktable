@@ -5,7 +5,6 @@ Welcome to the HBT2 wiki!
 * [Prerequisites](#prerequisites)
 * [Compile](#compile)
 * [Run](#run)
-* [Difference from `HBT-1` and `SUBFIND`](#notes-for-users-migrating-from-hbt-to-hbt2)
 * [Reference](#reference)
 
 ## Introduction
