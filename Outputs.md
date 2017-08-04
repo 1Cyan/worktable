@@ -8,7 +8,7 @@ Besides, the `Parameters.log` file records the version number of HBT used, as we
 
 The main outputs are in HDF5 format, which can be viewed with [HDFView](https://www.hdfgroup.org/products/java/hdfview/index.html) or any other HDF tools. In python, you can use [h5py](https://pypi.python.org/pypi/h5py) to read them directly. A python reader module is also provided in `toolbox/HBTReader.py`. 
 
-The following is an screenshot of a sample SubSnap file opened in hdfview:
+The following is a screenshot of a sample SubSnap file opened in hdfview:
 ![Sample SubSnap file in hdfview](https://github.com/Kambrian/HBTplus/blob/doc/SubSnap.png)
 
 ### subhalo properties and merger tree
