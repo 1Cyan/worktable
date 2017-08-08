@@ -41,8 +41,8 @@ The virial mass/radius and `Rmax`/`Vmax` quantities for FoF halos (**not** the s
 
     cd toolbox
     make halo_virial
-    ./halo_virial [config_file] [snapshot_number]
+    ./halo_virial [config_file] [snapshot_start] [snapshot_end]
 
-Note this has to be run **after finding subhalos with `HBT` **, because we use the center of the central subhalo as the center for the host halo in computing host properties.
+Note this has to be run **after finding subhalos with `HBT` **, because we use the center of the central subhalo as the center for the host halo in computing host properties. 
 
 Remember to change the datatype by defining/undefining [`HBT_INT8` and `HBT_REAL8`](https://github.com/Kambrian/HBTplus/wiki#customize-the-compilation) in the makefile before compiling.
