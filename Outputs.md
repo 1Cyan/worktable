@@ -9,7 +9,7 @@
 There are two types of files in the output:
   
 - SubSnap_*.hdf5: the subhalo catalogues, where * is replaced by the snapshot index (normally from `0` to `NumberOfSnapshots-1`). The snapshot index may not be the same as the `SnapshotId` which is the numbering of the simulation snapshot, depending on whether the `SnapshotId`s are consecutive and whether a `SnapshotList` parameter is specified in the config file. Note that if a `MinSnapshotIndex` is specified in the config file, the outputs will start from `MinSnapshotIndex`. This is useful when there are no objects in the first few snapshots of the simulation so that they can be skipped.
-- SrcSnap_*.hdf5: source subhalo catalogues, only used for restarting HBT from an intermediate snapshot. Can be safely removed once the run has finished.
+- SrcSnap_*.hdf5: source subhalo catalogues, only used for restarting HBT from an intermediate snapshot. Can be safely removed once the run has finished. When restarting HBT from `snapnum`, only the last snapshot, `SrcSnap_[snapnum-1].hdf5`, is loaded, so actually all the previous SrcSnap except the last can be removed.
 
 These outputs are in HDF5 format, which can be viewed with [HDFView](https://www.hdfgroup.org/products/java/hdfview/index.html) or any other HDF tools. 
 - In python, you can use [h5py](https://pypi.python.org/pypi/h5py) to read them directly. 
