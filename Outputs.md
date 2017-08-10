@@ -3,6 +3,7 @@
 * [Subhalos and merger tree](#subhalo-properties-and-merger-tree)
 * [Basic data selection](#basic-data-selection)
 * [Difference from `HBT-1`](#notes-for-users-migrating-from-hbt-to-hbt2)
+* [Examples for using `HBTReader`](#examples-for-using-hbtreader)
 
 ### Output files
 There are two types of files in the output:
@@ -14,6 +15,7 @@ These outputs are in HDF5 format, which can be viewed with [HDFView](https://www
 - In python, you can use [h5py](https://pypi.python.org/pypi/h5py) to read them directly. 
 - A python reader module is also provided in `toolbox/HBTReader.py`. 
 - To analyze them in C/C++, the simple way is to take one of the postprocessing programs under `toolbox` folder as a template and modify it. 
+- The data fields of subhalos are defined in `src/subhalo.h` and the output function is defined in `src/io/subhalo_io.cpp`, where the HDF5 datatype for subhalo is also created. The subhalo properties are saved using a single compound hdf5 datatype, and the subhalo particles are saved using variable length hdf5 arrays.
 
 The following is a screenshot of a sample SubSnap file opened in hdfview:
 ![Sample SubSnap file in hdfview](https://github.com/Kambrian/HBTplus/blob/doc/SubSnap.png)
@@ -65,82 +67,45 @@ The host halo of each subhalo is given by `HostHaloId`, which is the index of th
 
 HBT2 no longer have splintters. HBT2 does not store fake haloes either, i.e., for haloes that are not bound, you won't be able to find any subhalo hosted by it in HBT2.
 
---------------------
-Here's the headers of an example output file.
+### Examples for using `HBTReader`
+In order to tell python where to find HBTReader, you need to add its path to your environment variable `PYTHONPATH`. In `bash`, you can do
 
-Special types: 
-- `'O'`: Variable length array. 
+    export PYTHONPATH=/path/to/hbtreader:$PATHONPATH
 
-  It's an array of array, the subarrays have variable shape.
+replace `/path/to/hbtreader` with the actual path of `HBTReader.py`, which is under `toolbox` directory of your downloaded source.
 
-- `'V'`: Structure array. 
+After that you can open your python console and initialize the reader. Suppose your HBT+ output is located at `/hbt/output`, then inside your python console:
 
-  `'V28'` means that one item of the array contains 28 bytes.
+     from HBTReader import HBTReader
+     reader=HBTReader('/hbt/output')
 
-  `fp['Subhalos'][0]['TrackId']` and `fp['Subhalos']['TrackId'][0]` are identical.
+The reader will parse the parameter file located in the output folder and initialize the reader accordingly.
 
-```
-SubSnap_059.hdf5
-Grp /
-Grp /Cosmology/
-Dat /Cosmology/HubbleParam 	   f4 (1,)
-Dat /Cosmology/OmegaLambda0 	   f4 (1,)
-Dat /Cosmology/OmegaM0 	   f4 (1,)
-Dat /Cosmology/ParticleMass 	   f4 (1,)
-Dat /Cosmology/ScaleFactor 	   f4 (1,)
-Grp /Membership/
-Dat /Membership/GroupedTrackIds 	    O (523155,)
-    /Membership/GroupedTrackIds[0] 	   i4 (4438,)
-    ...
-Dat /Membership/NumberOfFakeHalos 	   i4 (1,)
-Dat /Membership/NumberOfNewSubhalos 	   i4 (1,)
-Dat /NestedSubhalos 	    O (632298,)
-    /NestedSubhalos[0] 	   i4 (0,)
-    ...
-Dat /ParticleProperties 	    O (632298,)
-    /ParticleProperties[0] 	  V28 (1,)
-      'ParticleIndex' 	   i4
-      'ComovingPosition' 	   f4 (3,)
-      'PhysicalVelocity' 	   f4 (3,)
-    ...
-Dat /SnapshotId 	   i4 (1,)
-Dat /SubhaloParticles 	    O (632298,)
-    /SubhaloParticles[0] 	   i4 (1,)
-    ...
-Dat /Subhalos 	 V300 (632298,)
-      'TrackId' 	   i4
-      'Nbound' 	   i4
-      'Mbound' 	   f4
-      'HostHaloId' 	   i4
-      'Rank' 	   i4
-      'LastMaxMass' 	   f4
-      'SnapshotIndexOfLastMaxMass' 	   i4
-      'SnapshotIndexOfLastIsolation' 	   i4
-      'SnapshotIndexOfBirth' 	   i4
-      'SnapshotIndexOfDeath' 	   i4
-      'RmaxComoving' 	   f4
-      'VmaxPhysical' 	   f4
-      'LastMaxVmaxPhysical' 	   f4
-      'SnapshotIndexOfLastMaxVmax' 	   i4
-      'R2SigmaComoving' 	   f4
-      'RHalfComoving' 	   f4
-      'R200CritComoving' 	   f4
-      'R200MeanComoving' 	   f4
-      'RVirComoving' 	   f4
-      'M200Crit' 	   f4
-      'M200Mean' 	   f4
-      'MVir' 	   f4
-      'SpecificSelfPotentialEnergy' 	   f4
-      'SpecificSelfKineticEnergy' 	   f4
-      'SpecificAngularMomentum' 	   f4 (3,)
-      'SpinPeebles' 	   f4 (3,)
-      'SpinBullock' 	   f4 (3,)
-      'InertialEigenVector' 	   f4 (3, 3)
-      'InertialEigenVectorWeighted' 	   f4 (3, 3)
-      'InertialTensor' 	   f4 (6,)
-      'InertialTensorWeighted' 	   f4 (6,)
-      'ComovingAveragePosition' 	   f4 (3,)
-      'PhysicalAverageVelocity' 	   f4 (3,)
-      'ComovingMostBoundPosition' 	   f4 (3,)
-      'PhysicalMostBoundVelocity' 	   f4 (3,)
-```
+To load a given subhalo snapshot `snapshotnumber`, you can do:
+
+     subs=reader.LoadSubhalos(snapshotnumber) #load all
+
+You can use `-1` as the snapshotnumber to represent the last snapshot in the above function. Negative numbers means counting from the lastsnapshot backwards. After loading, the subhalos are at your hand to analyze. For example
+
+     subs['Nbound']
+
+gives the number of bound particles in each subhalo.
+     
+     subs['LastMaxMass'][subs['Nbound']>1000]
+
+gives you the peak mass of all subhalos with more than 1000 particles. You can also sort easily:
+
+     subs.sort(order='TrackId') #sort using trackid
+     subs.sort(order=['HostHaloId', 'Rank']) # sort using hosthaloid first, and then using 'Rank' inside the same hosthalo
+
+
+In some cases you might only want to load specified fields or objects to speed up the io:
+
+     nbound=reader.LoadSubhalos(snapshotnumber, 'Nbound') #only Nbound
+     sub2=reader.LoadSubhalos(snapshotnumber, subindex=2) #only subhalo 2
+
+You can also load the entire history of a given track:
+
+     track2=reader.GetTrack(2) #track 2
+
+Check the `HBTReader.py` for more functions.
