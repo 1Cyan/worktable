@@ -74,7 +74,7 @@ In order to tell python where to find HBTReader, you need to add its path to you
 
 replace `/path/to/hbtreader` with the actual path of `HBTReader.py`, which is the `toolbox` directory of your downloaded source.
 
-After that you can open your python console and initialize the reader. Suppose your HBT+ output is located at `/hbt/output`, then inside your python console:
+After that you can open your favorite python console (for example, `ipython`) and use the reader. Suppose your HBT+ output is located at `/hbt/output`, then inside your python console:
 
      from HBTReader import HBTReader
      reader=HBTReader('/hbt/output')
