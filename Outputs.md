@@ -1,9 +1,9 @@
 # Table of cotents
 * [Output files](#output-files)
 * [Subhalos and merger tree](#subhalo-properties-and-merger-tree)
+* [Examples for using `HBTReader`](#examples-for-using-hbtreader)
 * [Basic data selection](#basic-data-selection)
 * [Difference from `HBT-1`](#notes-for-users-migrating-from-hbt-to-hbt2)
-* [Examples for using `HBTReader`](#examples-for-using-hbtreader)
 
 ### Output files
 There are two types of files in the output:
@@ -51,21 +51,6 @@ The other properties are hopefully self-explainatory. All the subhalo fields are
 Notes on Peebles and Bullock spin parameters: these parameters are vaguely defined due to the ambiguity/lack of standard in the mass, radius, and energy of a subhalo. So we do not provide them in our output. If you really need the spins, you can still compute them easily from the relevant quantities (mass, radius, energy, angular momentum) as you feel appropriate. If possible, use the `SpecificAngularMomentum` instead of the spin parameters. 
 
 There might be objects with `Nbound=0` and an empty particle list. These are mostly eliminated tracks arising from small halos that had their most-bound particles fluctuated away from the halo itself and then back again, creating duplicate branches which are eliminated later. In hydro simulations, `Nbound=0` tracks could also exist as a result of all its particles consumed by a black hole. 
-
-### Basic Data Selection
-
-For scientific analysis of the tracks, we recommend a basic selection in `LastMaxMass` (the peak mass of each track), to eliminate under-resolved tracks.  
-
-## Notes for users migrating from `HBT` to `HBT2`
-HBT and HBT2 have different algorithmic details. They are not expected to give identical results. 
-
-HBT no longer uses `ProSubID`. Instead, each subhalo is labelled by a unique `TrackId`, which is fixed throughout its evolution history. The progenitor/descendent of a subhalo at another snapshot is simply the subhalo labelled by the same `TrackId` at that time. 
-
-`sub_hierarchy` is not available in HBT2. Instead, a list of `NestedSubhalos` is available for each subhalo.
-
-The host halo of each subhalo is given by `HostHaloId`, which is the index of the host halo in the order stored in the corresponding (FoF) halo catalogue.  With this you can sort or search to find all the members of each host.
-
-HBT2 no longer have splintters. HBT2 does not store fake haloes either, i.e., for haloes that are not bound, you won't be able to find any subhalo hosted by it in HBT2.
 
 ### Examples for using `HBTReader`
 In order to tell python where to find HBTReader, you need to add its path to your environment variable `PYTHONPATH`. In `bash`, you can do
@@ -117,3 +102,19 @@ You can also load the entire history of a given track:
      track2=reader.GetTrack(2) #track 2
 
 Check the `HBTReader.py` for more functions.
+
+### Basic Data Selection
+
+For scientific analysis of the tracks, we recommend a basic selection in `LastMaxMass` (the peak mass of each track), to eliminate under-resolved tracks.  
+
+## Notes for users migrating from `HBT` to `HBT2`
+HBT and HBT2 have different algorithmic details. They are not expected to give identical results. 
+
+HBT no longer uses `ProSubID`. Instead, each subhalo is labelled by a unique `TrackId`, which is fixed throughout its evolution history. The progenitor/descendent of a subhalo at another snapshot is simply the subhalo labelled by the same `TrackId` at that time. 
+
+`sub_hierarchy` is not available in HBT2. Instead, a list of `NestedSubhalos` is available for each subhalo.
+
+The host halo of each subhalo is given by `HostHaloId`, which is the index of the host halo in the order stored in the corresponding (FoF) halo catalogue.  With this you can sort or search to find all the members of each host.
+
+HBT2 no longer have splintters. HBT2 does not store fake haloes either, i.e., for haloes that are not bound, you won't be able to find any subhalo hosted by it in HBT2.
+
