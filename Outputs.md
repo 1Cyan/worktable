@@ -85,7 +85,7 @@ To load a given subhalo snapshot `snapshotnumber`, you can do:
 
      subs=reader.LoadSubhalos(snapshotnumber) #load all
 
-You can use `-1` as the snapshotnumber to represent the last snapshot in the above function. Negative numbers means counting from the lastsnapshot backwards. After loading, the subhalos are at your hand to analyze. For example
+You can use `-1` as the snapshotnumber to represent the last snapshot in the above function. Negative numbers means counting from the lastsnapshot backwards. This will load all the subhalos at `snapshotnumber` into a numpy struct array. After loading, the subhalos are at your hand to analyze. For example
 
      subs['Nbound']
 
@@ -97,6 +97,14 @@ gives you the peak mass of all subhalos with more than 1000 particles. You can a
 
      subs.sort(order='TrackId') #sort using trackid
      subs.sort(order=['HostHaloId', 'Rank']) # sort using hosthaloid first, and then using 'Rank' inside the same hosthalo
+
+To see all the properties available, simply show the datatype of the array:
+
+     subs.dtype
+
+This will show something like:
+
+      Out[30]: dtype([('TrackId', '<i8'), ('Nbound', '<i8'), ('Mbound', '<f4'), ('HostHaloId', '<i8'), ('Rank', '<i8'), ('Depth', '<i4'), ('LastMaxMass', '<f4'), ('SnapshotIndexOfLastMaxMass', '<i4'), ('SnapshotIndexOfLastIsolation', '<i4'), ('SnapshotIndexOfBirth', '<i4'), ('SnapshotIndexOfDeath', '<i4'), ('SnapshotIndexOfSink', '<i4'), ('RmaxComoving', '<f4'), ('VmaxPhysical', '<f4'), ('LastMaxVmaxPhysical', '<f4'), ('SnapshotIndexOfLastMaxVmax', '<i4'), ('R2SigmaComoving', '<f4'), ('RHalfComoving', '<f4'), ('BoundR200CritComoving', '<f4'), ('BoundM200Crit', '<f4'), ('SpecificSelfPotentialEnergy', '<f4'), ('SpecificSelfKineticEnergy', '<f4'), ('SpecificAngularMomentum', '<f4', (3,)), ('InertialTensor', '<f4', (6,)), ('InertialTensorWeighted', '<f4', (6,)), ('ComovingAveragePosition', '<f4', (3,)), ('PhysicalAverageVelocity', '<f4', (3,)), ('ComovingMostBoundPosition', '<f4', (3,)), ('PhysicalMostBoundVelocity', '<f4', (3,)), ('MostBoundParticleId', '<i8'), ('SinkTrackId', '<i8')])
 
 
 In some cases you might only want to load specified fields or objects to speed up the io:
