@@ -85,9 +85,8 @@ Check `configs/Example.conf` for a sample parameter file.
 If `snapshotend` is omitted, only process `snapshotstart`. If `snapshotstart` is also omitted, will run from `MinSnapshotIndex` (default=0) to `MaxSnapshotIndex` (specified in config file). If `snapshotstart>MinSnapshotIndex`, `HBT` assumes the previous run stopped at `snapshotstart-1`, and will load the `SrcSnap_($snapshotstart-1).hdf5` and continue the run from `snapshotstart`. 
 
 To submit to a batch queue, check `HBTjob.bsub`
-
-### EAGLE runs
-To process EAGLE outputs, you will have to create a snapshotlist.txt file (due to the complex snapshot names) and place it under the subhalo path. There is a script toolbox/CreateSnapshotlist.py for creating the list.
+### Notes on processing Hydro simulations
+Depending on how star formation is implemented in the simulation, the user may need to modify the code to track newly formed stars in subhalos. For the EAGLE simulations currently supported by HBT+, star formation fully converts a gas particle into star particle, so no particle creation is needed. In some other simulations, star formation may only convert part of a gas particle into star. In this case, one need to modify `src/subhalo.h SubhaloSnapshot_t::UpdateParticles()` in MPI-Hydro (or `src/subhalo.h Subhalo_t::ParticleIdToIndex()` in the Hydro edition) to specify how to add new star particles. These functions update the source (or precursor) subhalo particle list from the previous snapshot to match the current snapshot.
 
 ## Reference
 For now, please cite the original [HBT paper](http://adsabs.harvard.edu/abs/2012MNRAS.427.2437H) if you use HBT in your work. We will soon have another paper coming out describing the new implementation here.
