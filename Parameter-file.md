@@ -10,4 +10,4 @@ The parameter files specify the input and output directory and format, and contr
 
 - Yipeng's runs (with jing_io)
 
-    A few extra parameters are needed for the IO. Check for example, config/8213.conf. Note that in order to use jing_io, you must set USE_JING_IO=yes in Makefile.jing_io when compiling. 
+    A few extra parameters are needed for the IO. Check for example, config/8213.conf. Note that in order to use jing_io, you must set USE_JING_IO=yes in `Makefile.jing_io` when compiling. 
