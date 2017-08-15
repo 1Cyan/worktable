@@ -91,5 +91,7 @@ To submit to a batch queue, check `HBTjob.bsub`
 Depending on how star formation is implemented in the simulation, the user may need to modify the code to track newly formed stars in subhalos. For the EAGLE simulations currently supported by HBT+, star formation fully converts a gas particle into star particle, so no particle creation is needed. In some other simulations, star formation may only convert part of a gas particle into star. In this case, one need to modify `src/subhalo.h SubhaloSnapshot_t::UpdateParticles()` in MPI-Hydro (or `src/subhalo.h Subhalo_t::ParticleIdToIndex()` in the Hydro edition) to specify how to add new star particles. These functions update the source (or precursor) subhalo particle list from the previous snapshot to match the current snapshot.
 
 ## Reference
-For now, please cite the original [HBT paper](http://adsabs.harvard.edu/abs/2012MNRAS.427.2437H) if you use HBT in your work. We will soon have another paper coming out describing the new implementation here.
+Detailed descriptions about the algorithm and discussions about the performance of the code can be found in the following papers. If you use HBT+ in your research, please kindly include references to them:
+- [HBT+: an improved code for finding subhalos and building merger trees in cosmological simulations](https://arxiv.org/abs/1708.03646)
+- HBT: [Resolving Subhaloes' Lives with the Hierarchical Bound-Tracing Algorithm](http://adsabs.harvard.edu/abs/2012MNRAS.427.2437H)
 
