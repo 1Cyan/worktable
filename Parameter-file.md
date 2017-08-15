@@ -1,4 +1,4 @@
-The parameter files specify the input and output directory and format, and controls some behavior and performance of HBT+.
+The parameter file specifies the input and output directory and format, and controls some behavior and performance of HBT+.
  
 - Examples  
 
