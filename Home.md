@@ -29,7 +29,7 @@ For the MPI edition, you also need
 ### Optional dependence
 - GNU Scientific Library [(GSL)](http://www.gnu.org/software/gsl/). 
 Only needed if you want to output the shapes and orientations of subhaloes. To enable or disable GSL support, uncomment or comment out the GSL block in `Makefile.inc` (especially the `-DHAS_GSL` line). When enabled, HBT will do eigenvalue decomposition of the inertial tensor of each subhalo, and output the eigenvalue and eigenvectors describing the shape and direction of the subhalo. Without GSL, only the inertial tensors will be output.
-- For the OpenMP edition, if you will be reading EAGLE/APOSTLE hdf5 data in parallel, you also need HDF5 compiled with multi-thread support.
+- For the OpenMP edition, if you will be reading EAGLE/APOSTLE hdf5 data in parallel, you also need HDF5 compiled with [multi-thread support](https://support.hdfgroup.org/HDF5/faq/threadsafe.html).
 
 Once the prerequisites are met, you may need to modify the `Makefile.inc` to set the correct compiler and library paths. 
 
