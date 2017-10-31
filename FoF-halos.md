@@ -40,9 +40,9 @@ You can also change the following parameters of FoF in the config file:
 The virial mass/radius and `Rmax`/`Vmax` quantities for FoF halos (**not** the subhalos, the properties of which are computed inside `HBT`) can be computed using `halo_virial.cpp` in toolbox of the `Hydro` branch. To compute these quantities, 
 
     cd toolbox
-    make halo_virial
+    make halo_virial -B
     ./halo_virial [config_file] [snapshot_start] [snapshot_end]
 
-Note this has to be run **after finding subhalos with `HBT` **, because we use the center of the central subhalo as the center for the host halo in computing host properties. 
+Note this has to be run **after finding subhalos with `HBT` **, because we use the center of the central subhalo as the center for the host halo in computing host properties. The `-B` option in the `make` command forces the recompilation of every dependent source file. This can take a bit more time but prevents potential issues caused by inconsistent datatypes (see below).
 
-Remember to change the datatype by defining/undefining [`HBT_INT8` and `HBT_REAL8`](https://github.com/Kambrian/HBTplus/wiki#customize-the-compilation) in the makefile before compiling.
+**NOTE**: Remember to change the datatype by defining/undefining [`HBT_INT8` and `HBT_REAL8`](https://github.com/Kambrian/HBTplus/wiki#customize-the-compilation) in the makefile before compiling. It's recommended to keep a consistent datatype between the main HBT code and the utilities. 
