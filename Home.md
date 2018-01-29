@@ -56,10 +56,10 @@ To produce single-precision `HBT` (internal datatypes are 4byte int and 4byte fl
 
 For unbinding gas particles:
 - `UNBIND_WITH_THERMAL_ENERGY`: include thermal energy in unbinding (only relevant for hydro simulations). If this is not defined, the code does not read in or use the thermal energy at all.
-- `HAS_THERMAL_ENERGY`: read in the thermal energy of each particle from the snapshot. Automatically defined if `UNBIND_WITH_THERMAL_ENERGY` is defined. If SaveSubParticleProperties is 1 in the config file, then the thermal energy will also be saved (so that you can use it to redefine the binding energy of each particle). 
+- `HAS_THERMAL_ENERGY`: read in the thermal energy of each particle from the snapshot. Automatically defined if `UNBIND_WITH_THERMAL_ENERGY` is defined. If `SaveSubParticleProperties` is `1` in the config file, then the thermal energy will also be saved (so that you can use it to redefine the binding energy of each particle). 
 
 
-  Simply add these macro definitions to the CXXFLAGS of your target in the Makefile. For example, adding this line to the Makefile
+Simply add these macro definitions to the `CXXFLAGS` of your target in the Makefile. For example, adding this line to the Makefile
   
           HBT: CXXFLAGS+=-DHBT_INT8 
 
