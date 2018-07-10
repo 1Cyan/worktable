@@ -24,7 +24,7 @@ Both editions support hydro simulations with gas/stars.
 - [HDF5](https://www.hdfgroup.org/) C library (1.8.0 and above)
 
 For the MPI edition, you also need
-- a MPI library (e.g., OpenMPI, MPICH, PlatformMPI)
+- a MPI library (e.g., [OpenMPI](https://www.open-mpi.org/), [MPICH](https://www.mpich.org/), PlatformMPI, IntelMPI)
 
 ### Optional dependence
 - GNU Scientific Library [(GSL)](http://www.gnu.org/software/gsl/). 
