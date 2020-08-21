@@ -65,7 +65,7 @@ Simply add these macro definitions to the `CXXFLAGS` of your target in the Makef
 
   will define `HBT_INT8` when you compile `HBT`.
 
-Note that `OpenMP` is not enabled in the `MPI` edition by default. If you want to use hybrid `OpenMP/MPI` parallelization, please uncomment the `OMPFLAGS` lines in `Makefile.inc`. 
+Note that `OpenMP` is not enabled in the `MPI` edition by default. If you want to use hybrid `OpenMP/MPI` parallelization, please uncomment the `OMPFLAGS` lines in `Makefile.inc`. The communication time for descendant finding and tree building can become a hotspot when using a very large number of MPI processes (say ~1000 and above), and load imbalance may also be a problem if the box is divided into too small pieces by MPI. In such cases, using hybrid parallelism by enabling OpenMP could help. The tree building time can become negligible with a small number (say ~100 and below) of MPI threads.
 
 ## Run
 ### FoF halos
