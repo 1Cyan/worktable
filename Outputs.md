@@ -48,9 +48,9 @@ Note that this program is only available in the [Hydro](https://github.com/Kambr
 
 The other properties are hopefully self-explainatory. All the subhalo fields are defined in `src/subhalo.h` which may contain more comments about each.
 
-Notes on Peebles and Bullock spin parameters: these parameters are vaguely defined due to the ambiguity/lack of standard in the mass, radius, and energy of a subhalo. So we do not provide them in our output. If you really need the spins, you can still compute them easily from the relevant quantities (mass, radius, energy, angular momentum) as you feel appropriate. If possible, use the `SpecificAngularMomentum` instead of the spin parameters. 
+- Notes on Peebles and Bullock spin parameters: 
 
-There might be objects with `Nbound=0` and an empty particle list. These are mostly eliminated tracks arising from small halos that had their most-bound particles fluctuated away from the halo itself and then back again, creating duplicate branches which are eliminated later. In hydro simulations, `Nbound=0` tracks could also exist as a result of all its particles consumed by a black hole. 
+    These parameters are vaguely defined due to the ambiguity/lack of standard in the mass, radius, and energy of a subhalo. So we do not provide them in our output. If you really need the spins, you can still compute them easily from the relevant quantities (mass, radius, energy, angular momentum) as you feel appropriate. If possible, use the `SpecificAngularMomentum` instead of the spin parameters. 
 
 ### Examples for using `HBTReader`
 In order to tell python where to find HBTReader, you need to add its path to your environment variable `PYTHONPATH`. In `bash`, you can do
@@ -106,6 +106,12 @@ Check the `HBTReader.py` for more functions.
 ### Basic Data Selection
 
 For scientific analysis of the tracks, we recommend a basic selection in `LastMaxMass` (the peak mass of each track), to eliminate under-resolved tracks.  
+
+- Empty tracks
+
+    There might be objects with `Nbound=0` and an empty particle list. These are mostly eliminated tracks arising from small halos that had their most-bound particles fluctuated away from the halo itself and then back again, creating duplicate branches which are eliminated later. Fragmentations in the FoF at the infall snapshot could also lead to the creation of duplicate branches that are subsequently eliminated. These tracks are typically with a very low peak mass (<50 particles) and live for a very short period (<~3 snapshots), so they can be safely ignored. 
+
+    In hydro simulations, `Nbound=0` tracks could also exist as a result of all its particles consumed by a black hole. 
 
 ## Notes for users migrating from `HBT` to `HBT+`
 HBT and HBT+ have different algorithmic details. They are not expected to give identical results. 
