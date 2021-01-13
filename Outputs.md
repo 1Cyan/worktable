@@ -3,6 +3,7 @@
 * [Subhalos and merger tree](#subhalo-properties-and-merger-tree)
 * [Examples for using `HBTReader`](#examples-for-using-hbtreader)
 * [Basic data selection](#basic-data-selection)
+* [Potential Complications](#potential-complications)
 * [Difference from `HBT-1`](#notes-for-users-migrating-from-hbt-to-hbt2)
 
 ### Output files
