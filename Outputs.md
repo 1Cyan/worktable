@@ -112,7 +112,7 @@ For scientific analysis of the tracks, we recommend a basic selection in `LastMa
 
 - Empty tracks
 
-    There might be objects with `Nbound=0` and an empty particle list. These are mostly eliminated tracks arising from small halos that had their most-bound particles fluctuated away from the halo itself and then back again, creating duplicate branches which are eliminated later. Fragmentations in the FoF at the infall snapshot could also lead to the creation of duplicate branches that are subsequently eliminated. These tracks are typically with a very low peak mass (<50 particles) and live for a very short period (<~3 snapshots), so they can be safely ignored. 
+    There might be objects with `Nbound=0` and an empty particle list. These are mostly eliminated tracks arising from small halos that had their most-bound particles fluctuated away from the halo itself and then back again, creating duplicate branches which are eliminated later. Fragmentations in the FoF at the infall snapshot could also lead to the creation of duplicate branches that are subsequently eliminated. These tracks are typically with a very low peak mass (`LastMaxMass<50 particles`) and live for a very short period (`SnapshotIndexOfDeath-SnapshotIndexOfBirth<~3`), so they can be safely ignored. 
 
     In hydro simulations, `Nbound=0` tracks could also exist as a result of all its particles consumed by a black hole. 
 
