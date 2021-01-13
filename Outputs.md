@@ -107,11 +107,17 @@ Check the `HBTReader.py` for more functions.
 
 For scientific analysis of the tracks, we recommend a basic selection in `LastMaxMass` (the peak mass of each track), to eliminate under-resolved tracks.  
 
+### Potential complications
+
 - Empty tracks
 
     There might be objects with `Nbound=0` and an empty particle list. These are mostly eliminated tracks arising from small halos that had their most-bound particles fluctuated away from the halo itself and then back again, creating duplicate branches which are eliminated later. Fragmentations in the FoF at the infall snapshot could also lead to the creation of duplicate branches that are subsequently eliminated. These tracks are typically with a very low peak mass (<50 particles) and live for a very short period (<~3 snapshots), so they can be safely ignored. 
 
     In hydro simulations, `Nbound=0` tracks could also exist as a result of all its particles consumed by a black hole. 
+
+- Duplicate particles
+   
+    Although HBT+ subhalos are defined to have exclusive particle lists, a trace amount of duplicate particles can be expected among subhalos in different hosts. This is because the source subhalos, from which the self-bound subhalos are computed, are inherited from progenitors and updated independently without following the current halo particle list. 
 
 ## Notes for users migrating from `HBT` to `HBT+`
 HBT and HBT+ have different algorithmic details. They are not expected to give identical results. 
