@@ -118,7 +118,7 @@ For scientific analysis of the tracks, we recommend a basic selection in `LastMa
 
 - Duplicate particles
    
-    Although HBT+ subhalos are defined to have exclusive particle lists, a trace amount of duplicate particles can be expected among subhalos in different hosts. This is because the source subhalos, from which the self-bound subhalos are computed, are inherited from progenitors and updated independently without following the current halo particle list. 
+    Although HBT+ subhalos are defined to have exclusive particle lists, a trace amount of duplicate particles can be expected after subhalos switch hosts. This is because the source subhalos, from which the self-bound subhalos are computed, are inherited from progenitors that share some particles with their hosts, to allow for accretion within the subgroups. 
 
 ## Notes for users migrating from `HBT` to `HBT+`
 HBT and HBT+ have different algorithmic details. They are not expected to give identical results. 
