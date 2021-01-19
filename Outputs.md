@@ -5,6 +5,7 @@
 * [Basic data selection](#basic-data-selection)
 * [Potential Complications](#potential-complications)
 * [Difference from `HBT-1`](#notes-for-users-migrating-from-hbt-to-hbt)
+* [Grouping trees into disconnected forests](#grouping-trees-into-forests)
 
 ### Output files
 There are two types of files in the output:
@@ -131,3 +132,5 @@ The host halo of each subhalo is given by `HostHaloId`, which is the index of th
 
 HBT+ no longer have splintters. HBT+ does not store fake haloes either, i.e., for haloes that are not bound, you won't be able to find any subhalo hosted by it in HBT+.
 
+## Grouping trees into forests
+Some analysis might want to group the tracks into forests of connected tracks that can be processed independently from other forests. A module [Tree2Forest.py](https://github.com/Kambrian/HBTplus/blob/Hydro/toolbox/Track2Forest.py) has been added in the toolbox in the [Hydro branch](https://github.com/Kambrian/HBTplus/tree/Hydro) to accomplish this.
