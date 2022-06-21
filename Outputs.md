@@ -33,7 +33,13 @@ Each subhalo is labelled by a unique `TrackId`, which is fixed throughout its ev
 
 `Depth` gives the level of the subhalo in the merging hierarchy. A central subhalo has `Depth=0`; those directly merged to the host halo of the central have `Depth=1` (i.e., sub-subhalos); those directly merged to depth=1 subhalos have `Depth=2` (i.e., sub-sub-subhalos).
 
-`Nbound` gives the number of bound particles in the subhalo. Once a subhalo is stripped to below `MinNumPartOfSub` specified in the parameter file, HBT continues to track its most bound particle. This single-particle descendent then has `Nbound=1`, and represent the "orphan" galaxy population in the framework of semi-analytical models. These orphans are also listed as subhaloes. `Mbound` is the bound mass (in physical units). Correspondingly, `NboundType` and `MboundType` are the bound particle number and bound mass for each type of particles (e.g., gas, DM, star, boundary..., relevant only for hydro simulations). By default, the mass of a subhalo does not include the contribution from its sub-subhalos (similar to the mass definition in `SUBFIND`).
+`Nbound` gives the number of bound particles in the subhalo.  `Mbound` is the bound mass (in physical units). Correspondingly, `NboundType` and `MboundType` are the bound particle number and bound mass for each type of particles (e.g., gas, DM, star, boundary..., relevant only for hydro simulations). By default, the mass of a subhalo does not include the contribution from its sub-subhalos (similar to the mass definition in `SUBFIND`). 
+
+- Notes on *Orphan Subhalo*: 
+
+  Once a subhalo is stripped to below `MinNumPartOfSub` specified in the parameter file, HBT continues to track its most bound particle. This single-particle descendent then has `Nbound=1`, and represent the "orphan" galaxy population in the framework of semi-analytical models. These orphans are also listed as subhaloes.
+
+  Orphan subhalos are also exclusive from other subhalos, meaning that their only particle (most-bound particle) are excluded from other subhalos. There are two exceptions however. One is that orphan subhalos can still contribute to the central mass. The other is that an orphan can sink to the center of another subhalo, at which time its mostbound particle will also be counted in the subhalo it sinks to (see below on `SinkTrackId`).
 
 `MVir`, `RVirComoving`, etc are the virial mass and radius for each bound subhalo, obtained by searching for a spherical overdensity (SO) radius counting only the bound density. This could differ slightly from the SO quantities for the host halo defined using all the mass (no matter bound or not) enclosed in a sphere. At low redshift, the 200Mean mass can be underestimated by 10%. However, the 200Crit and the tophat virial masses are generally unbiased since almost all the masses inside these two radii are found in the bound structure of the FoF halo. 
 
