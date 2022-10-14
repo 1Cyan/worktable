@@ -1,5 +1,3 @@
-Welcome to the HBT2 wiki!
-
 # Table Of Contents
 * [Introduction](#introduction)
 * [Prerequisites](#prerequisites)
