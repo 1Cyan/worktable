@@ -41,6 +41,11 @@ Each subhalo is labelled by a unique `TrackId`, which is fixed throughout its ev
 
   Orphan subhalos are also exclusive from other subhalos, meaning that their only particle (most-bound particle) are excluded from other subhalos. There are two exceptions however. One is that orphan subhalos can still contribute to the central mass. The other is that an orphan can sink to the center of another subhalo, at which time its mostbound particle will also be counted in the subhalo it sinks to (see below on `SinkTrackId`).
 
+- Notes on *Field Subhalo*:
+
+ Some subhalos identified by HBT+ are not contained within any FoF halo. These subhalos are called field subhalos, and can be identified by `HostHaloId==-1`. They also have `Rank=0` as each is considered to be its own central and host.
+
+
 `MVir`, `RVirComoving`, etc are the virial mass and radius for each bound subhalo, obtained by searching for a spherical overdensity (SO) radius counting only the bound density. This could differ slightly from the SO quantities for the host halo defined using all the mass (no matter bound or not) enclosed in a sphere. At low redshift, the 200Mean mass can be underestimated by 10%. However, the 200Crit and the tophat virial masses are generally unbiased since almost all the masses inside these two radii are found in the bound structure of the FoF halo. 
 
 To obtain proper spherical overdensity quantities for the host halo, please compile and run `halo_virial.cpp` after HBT finishes:
