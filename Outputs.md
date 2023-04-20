@@ -31,7 +31,7 @@ Each subhalo is labelled by a unique `TrackId`, which is fixed throughout its ev
 
 `Rank` gives the order of subhaloes inside the group if sorted according to `Nbound`, with `Rank=0` indicating the most-massive subhalo inside each group (i.e., the main/central subhalo).
 
-`Depth` gives the level of the subhalo in the merging hierarchy. A central subhalo has `Depth=0`; those directly merged to the host halo of the central have `Depth=1` (i.e., sub-subhalos); those directly merged to depth=1 subhalos have `Depth=2` (i.e., sub-sub-subhalos).
+`Depth` gives the level of the subhalo in the merging hierarchy. A central subhalo has `Depth=0`; those directly merged to the host halo of the central have `Depth=1` (i.e., sub-subhalos); those directly merged to depth=1 subhalos have `Depth=2` (i.e., sub-sub-subhalos). For example, the subhaloes at $Z_3$ in the above picture have `Depth=1, 0, 1, 2` from left to right.
 
 `Nbound` gives the number of bound particles in the subhalo.  `Mbound` is the bound mass (in physical units). Correspondingly, `NboundType` and `MboundType` are the bound particle number and bound mass for each type of particles (e.g., gas, DM, star, boundary..., relevant only for hydro simulations). By default, the mass of a subhalo does not include the contribution from its sub-subhalos (similar to the mass definition in `SUBFIND`). 
 
